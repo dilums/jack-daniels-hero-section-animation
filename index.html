@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jack Daniels</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+
+    
+</head>
+<body>
+    <div class="header pt-5 flex items-center">
+        <div class="flex-1 flex justify-around">
+          <div>Our Products</div>
+          <div>Process</div>
+          <div>Our story</div>
+        </div>
+        <img src="https://assets.codepen.io/3685267/jack-daniels-logo.svg" alt="" class="h-full" />
+        <div class="flex-1 flex justify-around">
+          <div>Recipies</div>
+          <div>Process</div>
+          <div>Our Story</div>
+        </div>
+      </div>
+      <div id="app" class="app h-screen w-screen">
+        <div class="back-text">
+          <div class="relative w-full h-full">
+            <div class="absolute flex items-center justify-center inset-0">
+              <div v-for="cls in clsStatic" :key="cls" :class="['back-text-actual', 'absolute', 'uppercase', `back-text-actual-${cls}`]" v-html="items[cls].name.join(' ')"></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="bottle-name-container">
+          <div class="relative w-full h-full">
+            <div v-for="cls in clsStatic" :key="cls" :class="['bottle-name', 'font-bold', `bottle-name-${cls}`, 'absolute', 'uppercase']" v-html="items[cls].name.join('<br>')"></div>
+          </div>
+        </div>
+      
+        <div v-for="cls in clsStatic" :key="cls" :class="['bottle', `bottle-${cls}`]">
+          <img class="h-full" :src="items[cls].bottleImage" alt="..." />
+        </div>
+      
+        <div v-for="cls in clsStatic" :key="cls" :class="['description-container', `description-container-${cls}`]">
+          <div class="description-title font-bold uppercase">
+            {{items[cls].title[0]}}
+          </div>
+          <div class="description-title font-bold uppercase">
+            {{items[cls].title[1]}}
+          </div>
+          <div class="description">{{items[cls].description}}</div>
+          <button class="btn-read-more">Read more</button>
+          <div class="video-container">
+            <img class="w-full" :src="items[cls].video" alt="..." />
+          </div>
+        </div>
+      
+        <div class="nav-container flex items-center">
+          <button class="arrow p-2">
+            <img class="h-full" src="https://assets.codepen.io/3685267/jack-daniels-arow-left.svg" alt="prv" />
+          </button>
+          <button v-for="(item, index) in bucket" :key="item.id" class="pg-container flex items-center justify-center" :class="[index === bucket[0].id ? 'pg-container-active': '']">
+            <div class="page"></div>
+          </button>
+          <button class="arrow p-2">
+            <img class="h-full" src="https://assets.codepen.io/3685267/jack-daniels-arow-right.svg" alt="nxt" />
+          </button>
+        </div>
+      </div>
+    <script src="main.js"></script>
+</body>
+</html>
